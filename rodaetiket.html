@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 210mm;
+        }
+
+        .etiket {
+            font-family: 'Roboto', sans-serif;
+            font-size: 12pt;
+            font-weight: 300;
+            width: 70mm;
+            box-sizing: border-box;
+            border-bottom: dashed 1px lightgray;
+            border-right: dashed 1px lightgray;
+            line-height: 28px;
+            float: left;
+            padding: 5mm 5mm 5mm 20mm;
+            page-break-inside: avoid;
+        }
+
+        .header{
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14pt;
+            font-weight: 500;
+        }
+
+        .etiketp:nth-child(3n) {
+            border-right-width: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container"></div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        const etiketler = [{
+                col1: "Süper Minimak",
+                col2: "08mm 8*19 ÇÖ (202m)",
+                rep: 14
+            },
+            {
+                col1: "Süper Minimak",
+                col2: "08mm 8*19 ÇÖ (185m)",
+                rep: 28
+            }
+        ];
+
+        etiketler.forEach(e => {
+            for (let i = 0; i < e.rep; i++) {
+                $('.container').append(`<div class="etiket">
+                    <div class="header">${e.col1}</div>
+                    <div>${e.col2}</div>
+                </divZ`);
+            }
+        })
+    </script>
+</body>
+
+</html>
