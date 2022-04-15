@@ -7,15 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Roboto:wght@300&display=swap" rel="stylesheet">
-    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&family=Roboto:wght@300&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/fontawesome/css/all.min.css">
+    <title>Roda Etiket</title>
     <style>
         body {
             margin: 0;
             padding: 0;
         }
 
-        .container {
+        .w210 {
             width: 210mm;
         }
 
@@ -33,7 +36,7 @@
             page-break-inside: avoid;
         }
 
-        .header{
+        .firma {
             font-family: 'Montserrat', sans-serif;
             font-size: 14pt;
             font-weight: 500;
@@ -46,29 +49,114 @@
 </head>
 
 <body>
-    <div class="container"></div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        const etiketler = [{
-                col1: "Süper Minimak",
-                col2: "08mm 8*19 ÇÖ (202m)",
-                rep: 14
-            },
-            {
-                col1: "Süper Minimak",
-                col2: "08mm 8*19 ÇÖ (185m)",
-                rep: 28
-            }
-        ];
+    <div class="container-fuild">
+        <div class="row">
+            <div class="col-5">
+                <h1 class="display-6 text-center"><b>ETİKET EKLE</b></h1>
+                <div class="row g-3 align-items-center px-3 py-1">
+                    <div class="col-4">
+                        <label for="customer" class="col-form-label">MÜŞTERİ</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" id="customer" class="form-control">
+                    </div>
+                </div>
+                <div class="row g-3 align-items-center px-3 py-1">
+                    <div class="col-4">
+                        <label for="orderno" class="col-form-label">SİP NO</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" id="orderno" class="form-control">
+                    </div>
+                </div>
+                <div class="row g-3 align-items-center px-3 py-1">
+                    <div class="col-4">
+                        <label for="product" class="col-form-label">ÜRÜN</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" id="product" class="form-control">
+                    </div>
+                </div>
+                <div class="row g-3 align-items-center px-3 py-1">
+                    <div class="col-4">
+                        <label for="extent" class="col-form-label">METRAJ</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" id="extent" class="form-control">
+                    </div>
+                </div>
+                <div class="row g-3 align-items-center px-3 py-1">
+                    <div class="col-4">
+                        <label for="count" class="col-form-label">ADET</label>
+                    </div>
+                    <div class="col-8">
+                        <input type="text" id="count" class="form-control">
+                    </div>
+                </div>
+                <div class="row g-3 align-items-center px-3 py-1">
+                    <div class="col-4"></div>
+                    <div class="col-8">
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary" onclick="addNewLabel()" type="button">EKLE</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-7">
+                <h1 class="display-6 text-center"><b>ETİKETLER</b></h1>
+                <div id="labelsList">
 
-        etiketler.forEach(e => {
-            for (let i = 0; i < e.rep; i++) {
-                $('.container').append(`<div class="etiket">
-                    <div class="header">${e.col1}</div>
-                    <div>${e.col2}</div>
-                </divZ`);
-            }
-        })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="w210" id="etiketler"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/models/Label.js"></script>
+    <script>
+        const labels = [];
+        
+        let l1 = new Label("S. Minimak", "REF : YILMAZLAR APT.", "8mm 8*19 ÇÖ", 20, 25);
+        let l2 = new Label("S. Minimak", "REF : GEDİK APT.", "8mm 8*19 KÖ", 40, 10);
+        labels.push(l1)
+        labels.push(l2)
+        refreshList();
+
+        function addNewLabel(){
+            let customer = $('#customer').val()
+            let orderno = $('#orderno').val()
+            let product = $('#product').val()
+            let extent = $('#extent').val()
+            let count = $('#count').val()
+            let newLabel = new Label(customer, orderno, product, extent, count);
+
+            labels.push(newLabel)
+
+            refreshList();
+        }
+
+        function refreshList(){
+            $('#labelsList').html('')
+            labels.forEach(label => {
+                $('#labelsList').append(label.getListRow())
+            })
+            $('#labelsList').append(getPrint())
+        }
+
+        function removeLabel(id){
+
+            refreshList();
+        }
+
+        function Print(){
+            
+        }
+
+        function getPrint(){
+            return `<div class="d-grid gap-2"><button class="btn btn-primary" onclick="Print()" type="button">YAZDIR</button></div>`
+        }
     </script>
 </body>
 
