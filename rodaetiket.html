@@ -45,11 +45,18 @@
         .etiketp:nth-child(3n) {
             border-right-width: 0;
         }
+        @media print
+        {    
+            .no-print, .no-print *
+            {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 
 <body>
-    <div class="container-fuild">
+    <div class="container-fuild no-print">
         <div class="row">
             <div class="col-5">
                 <h1 class="display-6 text-center"><b>ETİKET EKLE</b></h1>
@@ -117,14 +124,17 @@
     <script src="/assets/models/Label.js"></script>
     <script>
         const labels = [];
-        
+
         let l1 = new Label("S. Minimak", "REF : YILMAZLAR APT.", "8mm 8*19 ÇÖ", 20, 25);
-        let l2 = new Label("S. Minimak", "REF : GEDİK APT.", "8mm 8*19 KÖ", 40, 10);
         labels.push(l1)
-        labels.push(l2)
+        setTimeout(() => {
+            let l2 = new Label("S. Minimak", "REF : GEDİK APT.", "8mm 8*19 KÖ", 40, 10);
+            labels.push(l2)
+            refreshList();
+        }, 2)
         refreshList();
 
-        function addNewLabel(){
+        function addNewLabel() {
             let customer = $('#customer').val()
             let orderno = $('#orderno').val()
             let product = $('#product').val()
@@ -137,7 +147,7 @@
             refreshList();
         }
 
-        function refreshList(){
+        function refreshList() {
             $('#labelsList').html('')
             labels.forEach(label => {
                 $('#labelsList').append(label.getListRow())
@@ -145,16 +155,26 @@
             $('#labelsList').append(getPrint())
         }
 
-        function removeLabel(id){
-
-            refreshList();
+        function removeLabel(id) {
+            labels.forEach((item, i) => {
+                if (item.id == id) {
+                    labels.splice(i, 1);
+                    refreshList();
+                    return
+                }
+            })
         }
 
-        function Print(){
-            
+        function Print() {
+            $('#etiketler').html("");
+            labels.forEach(label => {
+                $('#etiketler').append(label.toHTML())
+            })
+            window.print();
+            $('#etiketler').html("");
         }
 
-        function getPrint(){
+        function getPrint() {
             return `<div class="d-grid gap-2"><button class="btn btn-primary" onclick="Print()" type="button">YAZDIR</button></div>`
         }
     </script>

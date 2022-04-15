@@ -11,10 +11,17 @@ class Label{
     }
 
     toHTML(){
-        return `<div class="etiket">
-                    <div class="firma">${e.col1}</div>
-                    <div>${e.col2}</div>
-                </div>`
+        let str = "";
+        for (let i = 0; i < this.count; i++) {
+            str += 
+            `<div class="etiket">
+                <div class="firma">${this.customer}</div>
+                <div>${this.orderno}</div>
+                <div>${this.product} (${this.extent}m)</div>
+            </div>`
+            
+        }
+        return str;
     }
 
     getListRow(){
