@@ -125,15 +125,6 @@
     <script>
         const labels = [];
 
-        let l1 = new Label("S. Minimak", "REF : YILMAZLAR APT.", "8mm 8*19 ÇÖ", 20, 25);
-        labels.push(l1)
-        setTimeout(() => {
-            let l2 = new Label("S. Minimak", "REF : GEDİK APT.", "8mm 8*19 KÖ", 40, 10);
-            labels.push(l2)
-            refreshList();
-        }, 2)
-        refreshList();
-
         function addNewLabel() {
             let customer = $('#customer').val()
             let orderno = $('#orderno').val()
