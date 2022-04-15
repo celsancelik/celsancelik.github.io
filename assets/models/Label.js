@@ -34,7 +34,7 @@ class Label{
                 ${this.product} (${this.extent}m) ${this.count} adet
             </div>
             <div class="col-1">
-                <button class="btn btn-link p-1" onclick="removeLabel(${this.id})"><i class="fa-solid fa-xmark"></i></button>
+                <button class="btn btn-link" onclick="removeLabel(${this.id})"><i class="fa-solid fa-xmark"></i></button>
             </div>
         </div>
         `
