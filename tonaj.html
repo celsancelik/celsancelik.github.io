@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <style>
+        label {
+            margin-right: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="display-4">Güvenli Çalışma Tablosu</h1>
+        <hr>
+        <div class="row my-3">
+            <div class="col-1">
+                <select class="form-select" id="cap"></select>
+            </div>
+            <div class="col-10 mt-2">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" checked name="oz" id="celik" value="celik">
+                    <label class="form-check-label" for="celik">
+                        Çelik Öz
+                    </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="oz" id="lif" value="lif">
+                    <label class="form-check-label" for="lif">
+                        Kendir Öz
+                    </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="oz" id="zincirG80" value="zincirG80">
+                    <label class="form-check-label" for="zincirG80">
+                        Zincir G80
+                    </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="oz" id="zincirG100" value="zincirG100">
+                    <label class="form-check-label" for="zincirG100">
+                        Zincir G100
+                    </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="oz" id="zincirG120" value="zincirG120">
+                    <label class="form-check-label" for="zincirG120">
+                        Zincir G120
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+        </div>
+
+        <hr>
+        <h1 class="display-6">Sonuç</h1>
+        <div class="row">
+            <div class="col-4" id="sonuc">
+
+            </div>
+        </div>
+
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    <script>
+        let data = `{"celik":{"8":{"tek":750,"iki":{"45":1050,"60":750},"dort":{"45":1550,"60":1100}},"10":{"tek":1150,"iki":{"45":1600,"60":1150},"dort":{"45":2400,"60":1700}},"12":{"tek":1700,"iki":{"45":2300,"60":1700},"dort":{"45":3550,"60":2500}},"13":{"tek":2000,"iki":{"45":2800,"60":2000},"dort":{"45":4150,"60":3000}},"14":{"tek":2250,"iki":{"45":3150,"60":2250},"dort":{"45":4800,"60":3400}},"16":{"tek":3000,"iki":{"45":4200,"60":3000},"dort":{"45":6300,"60":4500}},"18":{"tek":3700,"iki":{"45":5200,"60":3700},"dort":{"45":7800,"60":5650}},"20":{"tek":4600,"iki":{"45":6500,"60":4600},"dort":{"45":9800,"60":6900}},"22":{"tek":5650,"iki":{"45":7800,"60":5650},"dort":{"45":11800,"60":8400}},"24":{"tek":6700,"iki":{"45":9400,"60":6700},"dort":{"45":14000,"60":10000}},"26":{"tek":7800,"iki":{"45":11000,"60":7800},"dort":{"45":16400,"60":11500}},"28":{"tek":9000,"iki":{"45":12600,"60":9000},"dort":{"45":19000,"60":13500}},"32":{"tek":11800,"iki":{"45":16500,"60":11800},"dort":{"45":25000,"60":17500}},"36":{"tek":15000,"iki":{"45":21000,"60":15000},"dort":{"45":31500,"60":22500}},"40":{"tek":18500,"iki":{"45":26000,"60":18500},"dort":{"45":39000,"60":28000}},"44":{"tek":22500,"iki":{"45":31500,"60":22500},"dort":{"45":47000,"60":33500}},"48":{"tek":26000,"iki":{"45":37000,"60":26000},"dort":{"45":55000,"60":40000}},"52":{"tek":31500,"iki":{"45":44000,"60":31500},"dort":{"45":66000,"60":47000}},"56":{"tek":36000,"iki":{"45":50000,"60":36000},"dort":{"45":76000,"60":54000}},"60":{"tek":42000,"iki":{"45":58000,"60":42000},"dort":{"45":88000,"60":63000}}},"lif":{"8":{"tek":700,"iki":{"45":980,"60":700},"dort":{"45":1500,"60":1050}},"10":{"tek":1050,"iki":{"45":1470,"60":1050},"dort":{"45":2250,"60":1600}},"12":{"tek":1550,"iki":{"45":2170,"60":1550},"dort":{"45":3300,"60":2300}},"13":{"tek":1800,"iki":{"45":2520,"60":1800},"dort":{"45":3850,"60":2700}},"14":{"tek":2120,"iki":{"45":2970,"60":2120},"dort":{"45":4350,"60":3150}},"16":{"tek":2700,"iki":{"45":3780,"60":2700},"dort":{"45":5650,"60":4200}},"18":{"tek":3400,"iki":{"45":4760,"60":3400},"dort":{"45":7200,"60":5200}},"20":{"tek":4350,"iki":{"45":6100,"60":4350},"dort":{"45":9000,"60":6500}},"22":{"tek":5200,"iki":{"45":7280,"60":5200},"dort":{"45":11000,"60":7800}},"24":{"tek":6300,"iki":{"45":8820,"60":6300},"dort":{"45":13500,"60":9400}},"26":{"tek":7200,"iki":{"45":10080,"60":7200},"dort":{"45":15000,"60":11000}},"28":{"tek":8400,"iki":{"45":11760,"60":8400},"dort":{"45":18000,"60":12500}},"32":{"tek":11000,"iki":{"45":15400,"60":11000},"dort":{"45":23500,"60":16500}},"36":{"tek":14000,"iki":{"45":19600,"60":14000},"dort":{"45":29000,"60":21000}},"40":{"tek":17000,"iki":{"45":23800,"60":17000},"dort":{"45":36000,"60":26000}},"44":{"tek":21000,"iki":{"45":29400,"60":21000},"dort":{"45":44000,"60":31500}},"48":{"tek":25000,"iki":{"45":35000,"60":25000},"dort":{"45":52000,"60":37000}},"52":{"tek":29000,"iki":{"45":40600,"60":29000},"dort":{"45":62000,"60":44000}},"56":{"tek":33500,"iki":{"45":46900,"60":33500},"dort":{"45":71000,"60":50000}},"60":{"tek":39000,"iki":{"45":54600,"60":39000},"dort":{"45":81000,"60":58000}}},"zincirG80":{"6":{"tek":1.12,"iki":{"45":1.60,"60":1.12},"dort":{"45":2.36,"60":1.70}},"7":{"tek":1.50,"iki":{"45":2.12,"60":1.50},"dort":{"45":3.15,"60":2.24}},"8":{"tek":2.00,"iki":{"45":2.80,"60":2.00},"dort":{"45":4.25,"60":3.00}},"10":{"tek":3.15,"iki":{"45":4.25,"60":3.15},"dort":{"45":6.70,"60":4.75}},"13":{"tek":5.30,"iki":{"45":7.50,"60":5.30},"dort":{"45":11.20,"60":8.00}},"16":{"tek":8.00,"iki":{"45":11.20,"60":8.00},"dort":{"45":17.00,"60":11.80}},"18":{"tek":10.00,"iki":{"45":14.00,"60":10.00},"dort":{"45":21.20,"60":15.00}},"20":{"tek":12.50,"iki":{"45":17.00,"60":12.50},"dort":{"45":26.50,"60":19.00}},"22":{"tek":15.00,"iki":{"45":21.20,"60":15.00},"dort":{"45":31.50,"60":22.40}},"26":{"tek":21.20,"iki":{"45":30.00,"60":21.20},"dort":{"45":45.00,"60":31.50}},"28":{"tek":25.00,"iki":{"45":33.50,"60":25.00},"dort":{"45":50.00,"60":37.50}},"32":{"tek":31.50,"iki":{"45":45.00,"60":31.50},"dort":{"45":67.00,"60":47.50}},"36":{"tek":40.00,"iki":{"45":56.00,"60":40.00},"dort":{"45":85.00,"60":60.00}},"40":{"tek":50.00,"iki":{"45":71.00,"60":50.00},"dort":{"45":106.00,"60":75.00}},"45":{"tek":63.00,"iki":{"45":90.00,"60":63.00},"dort":{"45":132.00,"60":95.00}}},"zincirG100":{"6":{"tek":1.4,"iki":{"45":2,"60":1.4},"dort":{"45":3,"60":2.1}},"8":{"tek":2.5,"iki":{"45":3.6,"60":2.5},"dort":{"45":5.3,"60":3.8}},"10":{"tek":4,"iki":{"45":5.6,"60":4},"dort":{"45":8.4,"60":6}},"13":{"tek":6.7,"iki":{"45":9.5,"60":6.7},"dort":{"45":14,"60":10}},"16":{"tek":10,"iki":{"45":14,"60":10},"dort":{"45":21.2,"60":15}},"18":{"tek":12.5,"iki":{"45":18,"60":12.5},"dort":{"45":26.5,"60":19}},"22":{"tek":19,"iki":{"45":26.5,"60":19},"dort":{"45":40,"60":28}},"26":{"tek":26.5,"iki":{"45":37,"60":26.5},"dort":{"45":56,"60":40}}},"zincirG120":{"8":{"tek":3.0,"iki":{"45":4.25,"60":3.0},"dort":{"45":6.3,"60":4.5}},"10":{"tek":5.0,"iki":{"45":7.1,"60":5.0},"dort":{"45":10.6,"60":7.5}},"10":{"tek":8.1,"iki":{"45":11.3,"60":8.1},"dort":{"45":17.0,"60":12.0}}}}`;
+        data = JSON.parse(data)
+        $('input[type="radio"]').on('change', function () {
+            $('#cap').html('');
+            Object.keys(data[this.value]).forEach(element => {
+                $('#cap').append(`<option value="${element}">${element}mm</option>`);
+            })
+            $('#cap').off('change').on('change', { data: this.value }, function (e) {
+                $('#sonuc').html(getSonuc(data[e.data.data][this.value]))
+            })
+            $('#cap').trigger('change')
+        })
+        $('input[type="radio"]').trigger('change')
+        function getSonuc(deger) {
+            return `<table class="table">
+                <tr><td>Tekli</td><td>İki Bacak</td><td>3-4 Bacak</td></tr>
+                <tr><td></td><td><b>(0-45°)</b> ${deger.iki["45"]}</td><td><b>(0-45°)</b> ${deger.dort["45"]}</td></tr>
+                <tr><td>${deger.tek}</td><td><b>(45-60°)</b> ${deger.iki["60"]}</td><td><b>(45-60°)</b> ${deger.dort["60"]}</td></tr>
+                </table>`
+        }
+
+    </script>
+</body>
+
+</html>
