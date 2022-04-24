@@ -26,17 +26,13 @@ class Label{
 
     getListRow(){
         return `
-        <div class="row">
-            <div class="col-6">
-                ${this.customer} (${this.orderno})
-            </div>
-            <div class="col-5">
-                ${this.product} (${this.extent}m) ${this.count} adet
-            </div>
-            <div class="col-1">
-                <button class="btn btn-link" onclick="removeLabel(${this.id})"><i class="fa-solid fa-xmark"></i></button>
-            </div>
-        </div>
-        `
+        <tr>
+            <td>${this.customer}</td>
+            <td>${this.orderno}</td>
+            <td>${this.product}</td>
+            <td>${this.extent}m</td>
+            <td>${this.count} adet</td>
+            <td><button class="btn btn-link" onclick="removeLabel(${this.id})"><i class="fa-solid fa-xmark"></i></button></td>
+        </tr>`
     }
 }

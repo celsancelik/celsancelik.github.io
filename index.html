@@ -6,55 +6,76 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CelsanApp</title>
-    <link rel="stylesheet" href="/public/css/bootstrap.min.css">
-    <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/assets/sidebars/sidebars.css">
+    <link rel="stylesheet" href="/assets/fontawesome/css/all.min.css">
 </head>
 
 <body>
-    <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px; height: 100vh;">
-        <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-            <span class="fs-4">CelsanApp</span>
-        </a>
-        <hr>
-        <ul class="nav nav-pills flex-column mb-auto">
-            <li class="nav-item">
-                <a href="/kapasite" class="nav-link text-white">
-                    Makara Kapasite
-                </a>
-            </li>
-            <li>
-                <a href="rodaetiket" class="nav-link text-white">
-                    Roda Etiket
-                </a>
-            </li>
-            <li>
-                <a href="tonaj" class="nav-link text-white">
-                    Tonaj
-                </a>
-            </li>
-        </ul>
-    </div>
-    <div class="container">
+    <div class="container-fuild">
+        <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark"
+            style="width: 280px; height: 100vh; float: left;">
+            <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                <span class="fs-4">CelsanApp</span>
+            </a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto" id="sidebar"></ul>
+        </div>
+        <div class="d-flex flex-column flex-shrink-0 px-5" style="width: calc(100% - 280px); float: left;">
+            <h1 class="display-4 my-5">Makara Kapasite Hesaplama</h1>
 
+            <div class="card mt-4 col-12 col-lg-8 col-xl-6">
+                <div class="card-body">
+                    <h5 class="card-title">Hesapla</h5>
+                    <p class="card-text">Lütfen gerekli bilgileri doldur</p>
+
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">HALAT ÇAPI</span>
+                        </div>
+                        <input type="text" class="form-control" id="dia">
+                        <div class="input-group-append">
+                            <span class="input-group-text">mm</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="formGroupExampleInput">Makara Çapı</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" id="makara_cap">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">cm</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label for="formGroupExampleInput">Yanak Derinliği</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" id="derinlik">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">cm</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <label for="formGroupExampleInput">Yanak Aralığı</label>
+                            <div class="input-group mb-3">
+                                <input type="text" class="form-control" id="aralik">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">cm</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-block btn-lg" onclick="Hesapla()">Hesapla</button>
+                </div>
+            </div>
+        </div>
     </div>
     <script src="/public/jquery-3.6.0.min.js"></script>
     <script src="https://unpkg.com/@popperjs/core@2.11.5/dist/umd/popper.min.js"></script>
     <script src="/public/js/bootstrap.min.js"></script>
+    <script src="/assets/scripts/main.js"></script>
 </body>
 
 </html>

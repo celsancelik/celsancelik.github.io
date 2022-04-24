@@ -1,0 +1,47 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.w210 {
+    width: 210mm;
+}
+
+.etiket {
+    font-family: 'Roboto', sans-serif;
+    font-size: 12pt;
+    font-weight: 300;
+    width: 70mm;
+    box-sizing: border-box;
+    border-bottom: dashed 1px lightgray;
+    border-right: dashed 1px lightgray;
+    line-height: 28px;
+    float: left;
+    padding: 5mm 5mm 5mm 20mm;
+    page-break-inside: avoid;
+}
+
+.firma {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14pt;
+    font-weight: 500;
+}
+
+.etiketp:nth-child(3n) {
+    border-right-width: 0;
+}
+
+#etiketler{
+    display: none;
+}
+
+@media print
+{    
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
+    #etiketler{
+        display: block !important;
+    }
+}
